@@ -1,0 +1,40 @@
+{% extends 'loginbase.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Admin Registeration{% endblock %}</title>
+</head>
+<body>
+{% load widget_tweaks %}
+{% block content %}
+{% block form %}
+    <div class="row-col-sm-12 text-center"><a href="/adminlogin/"><button type="button" class="btn btn-primary w-50">Home</button> </a> </div><br>
+     <div class="container p-3 w-50 text-sm-center bg-light bg-opacity-75" style="margin-top: 5%">
+    <form method="post">
+     {% csrf_token %}
+            <h2 class="alert-primary text-center">Admin Registeration</h2><br>
+        <!--context variable for showing errors-->
+            {% if msg %}
+                <h4 class="danger text-center">{{ msg }}</h4>
+            {% endif %}<br>
+    <!-- form fields section-->
+           <div class="row">
+               <div class="col-sm-12">{% render_field form.admin_username placeholder="Username" class="form-control" %}</div>
+           </div><br>
+           <div class="row">
+               <div class="col-sm-12">{% render_field form.name placeholder="Full Name" class="form-control" %}</div>
+           </div><br>
+             <div class="row">
+               <div class="col-sm-12">{% render_field form.password placeholder="Password" class="form-control" %}</div>
+           </div><br>
+             <div class="row">
+               <div class="col-sm-12">{% render_field form.re_password placeholder="Confirm Password" class="form-control" %}</div>
+           </div><br>
+        <button type="submit" class="btn btn-success" style="min-width: 40%">Register</button>
+    </form>
+     </div>
+{% endblock %}
+{% endblock %}
+</body>
+</html>

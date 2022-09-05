@@ -1,0 +1,21 @@
+{% extends 'user_home.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task</title>
+</head>
+<body>
+</body>
+{% block content_body %}
+    <div class="container">
+    <h2 class="alert alert-info text-center">Tasks Completed</h2>
+    <h3 class="alert alert-primary">Name: {{ user.first_name }} {{ user.last_name }}</h3>
+    {% if tasks %}
+     <h4 class="alert alert-success">  Tasks Completed : {% for taskcomp in tasks.values %} {{ taskcomp }} {% endfor %}  </h4>
+        {% else %}
+        <h5 class="alert alert-warning text-center" style="margin-top: 8%">You Didn't Completed Any Tasks Yet!</h5>
+    {% endif %}
+    </div>
+ {% endblock %}
+</html>

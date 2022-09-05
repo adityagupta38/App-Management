@@ -1,0 +1,47 @@
+{% extends 'admin_home.html' %}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Add Apps {% endblock %}</title>
+</head>
+{% load widget_tweaks %}
+<body>
+{% block content_body %}
+    <div class="container">
+<form method="post" enctype="multipart/form-data" action="{% url 'add_app' user.id %}">
+{% csrf_token %}
+     <h2 class="alert-primary text-center">Add Apps</h2><br>
+            {% if msg %}
+                <h4 class="text-center">{{ msg }}</h4>
+            {% endif %}<br>
+           <div class="row p-2">
+              <div class="col-sm-12">
+                  <div class="container" id="drag_drop">
+                     <div class="drop-zone">
+                       <span class="drop-zone__prompt">Drop file here or click to upload</span>
+                         <input type="file" name="app_image" class="drop-zone__input text-center" alt="app image">
+                     </div>
+                  <script src="/static/JS/drag%20&%20drop.js"></script>
+                  </div>
+              </div>
+           </div><br>
+             <div class="row p-2">
+               <div class="col-sm-6">{{ form.app_name }}</div>
+               <div class="col-sm-6">{{ form.app_link }}</div>
+           </div><br>
+           <div class="row p-2">
+               <div class="col-sm-6">{% render_field form.app_category class="form-control" %}</div>
+               <div class="col-sm-6">{% render_field form.app_subcategory class="form-control" %}</div>
+           </div><br>
+           <div class="row p-2">
+               <div class="col-sm-12 text-center"><button class="btn-secondary btn p-1">{{ form.points }} Points</button></div>
+           </div><br><br>
+           <div class="row p-2">
+               <div class="col-sm-12 text-center"><input type="submit" value="Add App" class="btn btn-success"></div>
+           </div>
+</form>
+    </div>
+ {% endblock %}
+</body>
+</html>

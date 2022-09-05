@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name ="viewport" content ="width=device-width, initial-scale=1">
+    <title>{% block title %} {% endblock %}</title>
+    <link href="{% static 'CSS/bootstrap.css' %}" rel="stylesheet">
+    <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="{% static 'JS/bootstrap.bundle.js' %}"></script>
+
+    <!-- this css is used for drag & drop Image-->
+      <link rel="stylesheet" href="{% static 'CSS/drag & drop css.css'%}">
+
+
+        {% block body_background %}
+            <style>
+         body{
+            background-image: url("{% static 'images/login-page-background-7.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+             </style>
+        {% endblock %}
+
+
+{% block style %} {% endblock %}
+
+</head>
+<body>
+<div class="container-fluid">
+<h1 class=" alert alert-secondary text-center">Welcome To App Store</h1>
+<div class="center-block">
+{% block content %}
+    {% block form %}
+    {% endblock %}
+{% endblock %}
+</div>
+</div>
+</body>
+</html>

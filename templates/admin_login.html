@@ -1,0 +1,37 @@
+{% extends 'loginbase.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Admin Login{% endblock %}</title>
+</head>
+<body>
+{% block content %}
+{% block form %}
+    <div class="row-col-sm-12 text-center"><a href="/"><button class="btn btn-success w-50">Home</button></a></div>
+       <div class="container center w-50 bg-light bg-opacity-75" style="margin-top: 6%">
+        <form method="POST" class="form-control-plaintext ">
+            {% csrf_token %}
+            <h2 class="alert-success text-center">Admin Login</h2><br>
+            {% if msg %}
+                <h4 class="danger text-center">{{ msg }}</h4>
+            {% endif %}<br>
+           <div class="row">
+               <div class="col-sm-6"><label>Username</label></div>
+               <div class="col-sm-6">{{ form.username }}</div>
+           </div><br>
+             <div class="row">
+               <div class="col-sm-6"><label>Password</label></div>
+               <div class="col-sm-6">{{ form.password }}</div>
+           </div><br>
+
+        <div class="row">
+            <div class="col-sm-6"><input type="submit" class="btn btn-primary w-25" value="Login" style="min-width: 50%"></div>
+            <div class="col-sm-6"><h5>if you are not registered yet then<br><a href="{% url 'admin_register' %}">click here to register</a></h5> </div>
+        </div>
+        </form>
+       </div>
+{% endblock %}
+{% endblock %}
+</body>
+</html>

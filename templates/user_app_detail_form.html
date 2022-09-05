@@ -1,0 +1,58 @@
+{% extends 'user_home.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}App Detail{% endblock %}</title>
+</head>
+<body>
+{% block content_body %}
+<div class="container">
+<a href="/userhome">back</a>
+    {% if app %}
+            <div class="row container p-4 pb-5  m-4" style="background-color: rgba(135,135,143,0.36)">
+            <div class="col-3"><img src="{{ app.app_image.url }}" alt="app logo" class="img-fluid img-responsive w-50 h-100">
+            </div>
+            <div class="col-6">
+                <h2 class="pt-2 mt-3">{{ app.app_name }}</h2>
+                <h5><a href="{{ app.app_link }}" target="_blank">{{ app.app_name }}</a></h5>
+            </div>
+            <div class="col-3"><button class="btn btn-success mt-4 p-3 w-75">{{ app.points }}  Points</button></div>
+            </div>
+        <div class="row-cols-sm-12 text-center">
+        <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+            <!-- successful msg section-->
+            {% if messages %}
+                {% for message in messages %}
+                    <h4 class="alert-success">{{ message }}</h4>
+                {% endfor %}<br>
+            {% endif %}
+         <!-- Form errors section-->
+            {% if errors %}
+                {% for error in errors.values %}
+                    <h4 class="alert-danger">{{ error }}</h4>
+                {% endfor %}<br>
+            {% endif %}
+        <!-- errmsg section for already added app screenshot-->
+        {% if errmsg %}
+            <h4 class="alert-danger">{{ errmsg }}</h4><br>
+        {% endif %}
+        <div class="container" id="drag_drop">
+                     <div class="drop-zone">
+                       <span class="drop-zone__prompt">Drop file here or click to upload</span>
+                         <input type="file" name="app_ss" class="drop-zone__input text-center" alt="app Screenshot">
+                     </div>
+                  <script src="/static/JS/drag%20&%20drop.js"></script>
+        </div><br>
+            <button type="submit" class="btn btn-success" style="min-width: 50%">Upload</button>
+
+        </form>
+        </div>
+    {% else %}
+        <h2 class="text-center mt-5 pt-5">No Contents</h2>
+    {% endif %}
+    </div>
+{% endblock %}
+</body>
+</html>

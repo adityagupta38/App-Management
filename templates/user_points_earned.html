@@ -1,0 +1,21 @@
+{% extends 'user_home.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Points{% endblock %}</title>
+</head>
+<body>
+{% block content_body %}
+    <div class="container">
+    <h2 class="alert alert-info text-center">Total Points Earned</h2>
+    <h3 class="alert alert-primary">Name: {{ user.first_name }} {{ user.last_name }}</h3>
+    {% if points %}
+     <h4 class="alert alert-success">  Total Points Earned : {% for totpoints in points.values %} {{ totpoints }} {% endfor %}  </h4>
+        {% else %}
+        <h5 class="alert alert-warning text-center" style="margin-top: 8%">Complete One Or More Tasks To Earn Points</h5>
+    {% endif %}
+    </div>
+{% endblock %}
+</body>
+</html>

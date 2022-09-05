@@ -1,0 +1,48 @@
+{% extends 'base_profile.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}User Home{% endblock %}</title>
+</head>
+<body>
+{% block header %}
+     <div class="row">
+    <div class="col-sm-12">
+    <h1 class="alert-primary text-center">Hello {{ user.first_name }} {{ user.last_name }}</h1>
+    </div>
+    </div>
+{% endblock %}
+{% block navbar %}
+ <div class=" container-fluid">
+<ul class="nav navbar-nav p-2 container">
+    <li class="active"><a href="/userhome/"><button class="butt"><i class="fa fa-home"></i>  Home</button></a></li>
+    <li><a href="/userprofile/"><button class="butt"><i class="fa fa-plus-square"></i>     Profile</button></a></li>
+    <li><a href="/userpoints/"><button class="butt"><i class="fa fa-sort-numeric-asc"></i>     Points</button></a></li>
+    <li><a href="{% url 'user_tasks' %}"><button class="butt"><i class="fa fa-plus"></i>     Task</button></a></li>
+    <li><a href="{% url 'user_logout' %}"><button class="butt"><i class="fa fa-sign-out"></i>     Logout</button></a></li>
+</ul>
+</div>
+{% endblock %}
+{% block content_body %}
+    <div class="container">
+    {% if apps %}
+        {% for app in apps %}
+            <div class="row container p-4 pb-5  m-4" style="background-color: rgba(135,135,143,0.36)">
+            <div class="col-3"><img src="{{ app.app_image.url }}" alt="app logo" class="img-fluid img-responsive w-50 h-100">
+           <br><a href="{{ app.app_link }}" target="_blank">{{ app.app_name }}</a>
+            </div>
+            <div class="col-6">
+                <h2 class="pt-2 mt-3">{{ app.app_name }}</h2>
+                <h5><a href="/userappdetail{{ app.id }}">View Detail</a></h5>
+            </div>
+            <div class="col-3"><button class="btn btn-success mt-4 p-3 w-75">{{ app.points }}  Points</button> </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h2 class="text-center mt-5 pt-5">No Contents</h2>
+    {% endif %}
+    </div>
+{% endblock %}
+</body>
+</html>

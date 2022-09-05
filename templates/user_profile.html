@@ -1,0 +1,14 @@
+{% extends 'user_home.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+{% block content_body %}
+    <h2 class="alert alert-info text-sm-center">Profile</h2>
+    <h3 class="alert alert-primary">Name: {{ user.first_name }} {{ user.last_name }}</h3>
+{% endblock %}
+</body>
+</html>
