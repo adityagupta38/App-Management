@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from Apps.forms import AdminRegForm, AdminLoginForm, AppModForm
 from .mixins import is_admin_registered, is_authenticated
 from .models import AdminUser, Apps
-
+from django.contrib import messages
 # Create your views here.
 
 
@@ -40,8 +40,8 @@ def admin_register(request):
         if form.is_valid():
             form.save()
             msg = f'{user} Sucessfully Registered'
-            form = AdminLoginForm()
-            return render(request, 'admin_login.html', {'form': form, 'msg': msg})
+            messages.add_message(request, messages.SUCCESS, msg)
+            return redirect('/adminlogin/')
         msg = "Passwords Doesn't Match Pls Check It Again"
         return render(request, 'admin_registeration_form.html', {'form': form, 'msg': msg})
     return render(request, 'admin_registeration_form.html', {'form': form})
