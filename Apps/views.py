@@ -3,6 +3,8 @@ from Apps.forms import AdminRegForm, AdminLoginForm, AppModForm
 from .mixins import is_admin_registered, is_authenticated
 from .models import AdminUser, Apps
 from django.contrib import messages
+import os
+from AppManagement.settings import BASE_DIR
 # Create your views here.
 
 
@@ -85,3 +87,17 @@ def admin_logout(request):
 
 def home(request):
     return render(request, 'home.html')
+
+
+def app_delete(request, pk):
+    if request.method == "POST":
+        user_id = int(request.POST['userid'])
+        app = Apps.objects.get(id=pk)
+        app_img_path = app.app_image.url
+        os.remove('{}{}'.format(BASE_DIR, app_img_path))
+        app.delete()
+        return redirect(f'/adminhome{user_id}/')
+    msg = None
+    username = request.GET.get('username')
+    user = AdminUser.objects.get(admin_username=username)
+    return render(request, 'confirm_app_delete.html', {'user': user, 'msg': msg})
