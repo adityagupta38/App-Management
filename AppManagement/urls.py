@@ -35,7 +35,7 @@ urlpatterns = [
     path('adminlogin/', views.admin_login, name='admin_login'),
     path('admin_register/', views.admin_register, name='admin_register'),
     path('adminhome<int:pk>/', views.admin_home, name='admin_home'),
-    path('addapp<int:id>', views.add_app, name='add_app'),
+    path('addapp<int:pk>', views.add_app, name='add_app'),
     path('deleteapp<int:pk>/', views.app_delete, name='delete_app'),
     path('adminlogout/', views.admin_logout, name='admin_logout'),
     path('userlogin/', authviews.LoginView.as_view(next_page='/userhome/', template_name='user_login.html'), name='user_login'),

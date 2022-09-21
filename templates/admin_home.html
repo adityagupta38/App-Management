@@ -1,5 +1,5 @@
 {% extends 'base_profile.html' %}
-<!DOCTYPE html>
+<! DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,16 +27,16 @@
     <div class="container">
     {% if apps %}
         {% for app in apps %}
-            <div class="row container p-4 pb-5 m-4" style="background-color: rgba(135,135,143,0.36)">
-            <div class="col-3"><img src="{{ app.app_image.url }}" alt="app logo" class="img-fluid img-responsive w-50 h-100">
+            <div class="row container p-4 pb-5 m-4" style="background-color: rgba(135,135,143,0.36);">
+            <div class="col-sm-3 col-lg-pull-3"><img src="{{ app.app_image.url }}" alt="app logo" class="img-fluid img-responsive w-50 h-100">
            <br><a href="{{ app.app_link }}" target="_blank">{{ app.app_name }}</a>
             </div>
-            <div class="col-6">
+            <div class="col-sm-6 col-lg-pull-6">
                 <h2 class="pt-2 mt-3">{{ app.app_name }}</h2>
                 <h5>{{ app.app_category }}</h5>
                 <h5>{{ app.app_subcategory }}</h5>
             </div>
-            <div class="col-3">
+            <div class="col-sm-3 col-lg-pull-3">
                  <div class="row-cols-sm-12 text-sm-end">
                     <form action="/deleteapp{{ app.id }}">
                         <input type="hidden" name="username" value="{{ user.admin_username }}">

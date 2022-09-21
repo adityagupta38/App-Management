@@ -4,20 +4,18 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-
 # Create your models here.
 
 # Creating Model to Register Admin Users
-
 
 class AdminUser(models.Model):
     admin_username = models.CharField(max_length=30, unique=True)
     name = models.CharField(max_length=150)
     password = models.CharField(max_length=20)
     re_password = models.CharField(max_length=20)
+
     class Meta:
         db_table = 'AdminUser'
-
 
 
 class Apps(models.Model):
